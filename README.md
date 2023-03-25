@@ -71,3 +71,80 @@ void main() {
 }
 ```
 
+## Optional Positional Parameters
+
+```dart
+String sayHello(String name, int age, [String? country = 'ko']) =>
+    "Hello $name you are $age years old and from $country";
+
+void main() {
+  var result = sayHello('a', 20);
+  print(result);
+}
+```
+
+## QQ Operator (question question)
+
+String을 받아서 대문자로 반환하는 함수가 있다. 만일 사용자가 null을 입력한다면 에러가 나는데 인자에 ?를 추가해준다.
+```dart
+String capitalizeName(String name) => name.toUpperCase();
+
+void main() {
+  capitalizeName('hubu');
+  capitalizeName(null);
+}
+```
+
+이제 null 값을 받을 수 있게 됐는데 그래도 에러가 발생한다. null값에 toUpperCase()를 호출할 수 없기 때문이다.
+```dart
+String capitalizeName(String? name) => name.toUpperCase();
+
+void main() {
+  capitalizeName('hubu');
+  capitalizeName(null);
+}
+```
+
+해결하기 위해 조건 name이 null이 아닐때 name.toUpperCase()를 리턴하게 하면 된다.
+```dart
+String capitalizeName(String? name) {
+  if (name != null) {
+    return name.toUpperCase();
+  }
+  return 'ANON'
+}
+
+// 짧게 고쳐보면
+String capitalizeName(String? name) => name != null ? name.toUpperCase() : 'ANON';
+
+void main() {
+  capitalizeName('hubu');
+  capitalizeName(null);
+}
+```
+
+"??"로 더 짧게 고쳐볼 수 있다. a ?? b 좌항이 null이면 우항을 return
+```dart
+String capitalizeName(String? name) => name?.toUpperCase() ?? 'ANON';
+// 그리고 name 자체가 null인경우 toUpperCase를 호출 할 수 없기 때문에 name에 "?"를 추가해준다.
+
+void main() {
+  capitalizeName('hubu');
+  capitalizeName(null);
+}
+```
+
+## QQ Equalrs or QQ Assignment Operator
+
+null일 수도 있는 변수 name을 만들어보자.
+
+```dart
+void main() {
+  String? name;
+  name ??= 'hubu'; // "??=" 연산자로 name이 null이라면 'hubu'를 할당한다.
+  name = null;
+  name ??= 'hubu2';
+  print(name); // 'hubu2'
+}
+```
+
