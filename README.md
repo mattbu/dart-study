@@ -148,3 +148,24 @@ void main() {
 }
 ```
 
+## typedef
+typedef는 자료형에 alias를 붙여준다.
+
+```dart
+// before
+List<int> reverseListOfNumbers(List<int> list) {
+  var reversed = list.reversed;
+  return reversed.toList();
+}
+
+// after
+typedef ListOfInts = List<int>;
+
+ListOfInts reverseListOfNumbers(ListOfInts list) {
+  var reversed = list.reversed;
+  return reversed.toList();
+}
+```
+
+
+
