@@ -47,10 +47,22 @@ void main() {
 
 하지만 Dart의 Null Safety 적용 때문에 에러가 난다. 정의한 파라미터는 3개인데 함수 호출 시
 인자를 안보낸다거나 1,2개 보낼 경우에 문제가 되기 때문이다. 두가지 방법으로 해결 가능하다. (null safety에 걸릴 일 X)
-+ Default Parameter 
++ Default Parameter: 파라미터의 기본값을 설정해준다.
 ```dart
 String sayHello(
     {String name = 'HUBU', int age = 30, String country = 'South Korea'}) {
+  return "Hello $name, you are $age, and you come from $country";
+}
+
+void main() {
+  print(sayHello(age: 30, country: 'Korea', name: 'b'));
+}
+```
+
++ required modifier
+```dart
+String sayHello(
+    {required String name, required int age, required String country}) {
   return "Hello $name, you are $age, and you come from $country";
 }
 
